@@ -16,18 +16,6 @@ def createPipeline(gitid,project,branch,pipelineName)
   
 }
 
-
-//def scm = new GitSCM("git@github.com:roshanp3004/JavaGame.git")
-//scm.branches = [new BranchSpec("*/develop")];
-/*
-def flowDefinition = new org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition(scm, "Jenkinsfile")
-
-def parent = Jenkins.instance
-def job = new org.jenkinsci.plugins.workflow.job.WorkflowJob(parent, "New Job")
-job.definition = flowDefinition
-
-parent.reload()
-*/
 println("Creating pipeline")
 createPipeline("roshanp3004","JavaGame","develop","PipelineFly")
 println("Pipeline created from Jenkinsfile for project")
