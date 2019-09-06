@@ -1,0 +1,33 @@
+import hudson.plugins.git.*;
+
+def createPipeline(gitid,project,branch,pipelineName)
+{
+    def gitpath="git@github.com:"+gitid+"/"+project+".git"
+    println("Git Path is : "+gitpath)
+	def scm = new GitSCM(gitpath)
+	scm.branches = [new BranchSpec("*/"+branch)]
+
+	def flowDefinition = new org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition(scm, "Jenkinsfile")
+	def parent = Jenkins.instance
+	def job = new org.jenkinsci.plugins.workflow.job.WorkflowJob(parent, pipelineName)
+	job.definition = flowDefinition
+
+	parent.reload()
+  
+}
+
+
+//def scm = new GitSCM("git@github.com:roshanp3004/JavaGame.git")
+//scm.branches = [new BranchSpec("*/develop")];
+/*
+def flowDefinition = new org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition(scm, "Jenkinsfile")
+
+def parent = Jenkins.instance
+def job = new org.jenkinsci.plugins.workflow.job.WorkflowJob(parent, "New Job")
+job.definition = flowDefinition
+
+parent.reload()
+*/
+println("Creating pipeline")
+createPipeline("roshanp3004","JavaGame","develop","PipelineFly")
+println("Pipeline created from Jenkinsfile for project")
